@@ -5,49 +5,64 @@ import { useState, useEffect }                                                  
 import arrow                                                                    from "../assets/img/arrows/arrow.png";
 // COMPONENTS==============================================================================================================
 // RENDER==================================================================================================================
-export function Pokedex() {
-
+export function Pokedex({ up, down }) {
+    // VARIABLES===========================================================================================================
     const [list, setList]               = useState([]);
     const [type, setType]               = useState({});
     const [selectId, setSelectId]       = useState(1);
-    const [up, setUp]                   = useState(0);
+    const [isTop, setIsTop]             = useState(1);
+    const requestGetPokemon             = async () => {
+        try{
+            let data                    = [];
 
-    useEffect(() => {
-        const getPokemon                = async () => {
-            try{
-                let data                = [];
+            for(let i = 1; i < 152; i++){
+                let request             = await axios({
+                    method              : "get",
+                    url                 : `https://pokeapi.co/api/v2/pokemon/${i}`
+                });
 
-                for(let i = 1; i < 152; i++){
-                    let request         = await axios({
-                        method          : "get",
-                        url             : `https://pokeapi.co/api/v2/pokemon/${i}`
-                    });
-
-                    if(request.status !== 200){
-                        console.log(request);
-                        continue;
-                    }
-
-                    data                = [...data, request.data];
+                if(request.status !== 200){
+                    console.log(request);
+                    continue;
                 }
 
-                setList(data);
-
-            }catch(exception){
-                console.log(exception);
-                return;
+                data                    = [...data, request.data];
             }
-        };
-        setType(() => {
-            let images                          = {};
-            let r                               = require.context("../assets/img/type", false, /\.(png|jpe?g|svg)$/);
-            r.keys().map((item, index)          => { 
-                images[item.replace(/\.\/|\.png/g, "")]  = r(item); 
-            });
-            return images;
+
+            setList(data);
+
+        }catch(exception){
+            console.log(exception);
+            return;
+        }
+    };
+    const setTypeImg                    = () => {
+        let images                      = {};
+        let r                           = require.context("../assets/img/type", false, /\.(png|jpe?g|svg)$/);
+        r.keys().map((item, index)      => { 
+            return images[item.replace(/\.\/|\.png/g, "")]  = r(item); 
         });
-        getPokemon();
+        setType(images);
+    }
+
+    // USEEFFECT===========================================================================================================
+    useEffect(() => {
+        setTypeImg();
+        requestGetPokemon();
     }, []);
+
+    useEffect(() => {
+        
+        if(up){
+            setSelectId(selectId === 1 ? 151 : selectId - 1);            
+        }
+
+        if(down){
+            setIsTop(selectId - 9);
+            setSelectId(selectId === 151 ? 1 : selectId + 1);
+        }
+
+    }, [up, down]);
 
     return (
         <>
@@ -57,7 +72,7 @@ export function Pokedex() {
             <div className="h-[323px] overflow-hidden bg-white text-4xl">
                 {list.map((item, key) => {
                     return (
-                        <div className={`${(selectId - 9) >= item.id ? "hidden" : "flex"} uppercase h-[35.5px] overflow-hidden leading-[28px] px-4`} key={key}>
+                        <div className={`${(selectId - 9) >= item.id && isTop <= item.id ? "hidden" : "flex"} uppercase h-[35.5px] overflow-hidden leading-[28px] px-4`} key={key}>
                             <div className={`pl-2 pr-1 flex ${selectId === item.id ? "" : "opacity-0"}`}>
                                 <img src={arrow} alt={`arrow`} className="m-auto mr-0 mt-2" width={12}/>
                             </div>

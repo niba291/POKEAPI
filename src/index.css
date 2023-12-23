@@ -9,7 +9,7 @@
 
 @layer components{
 
-    html {
+    /* html {
         @apply bg-background;
     }
 
@@ -32,6 +32,6 @@
 
     .text-shadow{
         text-shadow: 1px 1px #55554F;
-    }
+    } */
 
 }

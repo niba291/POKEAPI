@@ -11,6 +11,9 @@ module.exports                  = {
                 "base-black"    : "#0F0E0D",
                 "base-white"    : "#F0F0F0",
             },
+            "gba"               : {
+              "gray-button"     : "#E6E6E6"
+            },
             "background"        : "#5E69AB"
         },
         fontFamily              : {

@@ -63,8 +63,17 @@ export function GBA(props) {
                     transform="translate(-1.708 -30.626)"
                 />
             </svg>
-            <div type="button" className="w-[60px] h-[70px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -ml-[555px] -mt-[10px] -z-50 bg-gray-500"></div>
-            <button type="button" className="w-[60px] h-[70px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -ml-[555px] -mt-[10px] z-50" buttonDown={props.buttonDown}></button>
+            <>
+                <div type="button" className="w-[60px] h-[70px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -ml-[555px] -mt-[70px] -z-50 bg-gba-gray-button"></div>
+            </>
+            <>
+                <div type="button" className="w-[60px] h-[70px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -ml-[555px] -mt-[10px] -z-50 bg-gba-gray-button"></div>
+                <button type="button" className="w-[60px] h-[70px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -ml-[555px] -mt-[10px] z-50" onMouseDown={props.buttonDown.up} onMouseUp={props.buttonDown.down}></button>
+            </>
+            <>
+                <div type="button" className="w-[60px] h-[70px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -ml-[555px] -mt-[120px] -z-50 bg-gba-gray-button"></div>
+                <button type="button" className="w-[60px] h-[70px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -ml-[555px] -mt-[120px] z-50" onMouseDown={props.buttonUp.up} onMouseUp={props.buttonUp.down}></button>
+            </>
             <div className={`bg-white w-[640px] h-[403px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-[43px] ml-[2px] -z-50 overflow-hidden font-gameboy`}>
                 {props.children}
             </div>
