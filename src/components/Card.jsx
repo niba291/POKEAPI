@@ -52,19 +52,19 @@ export function CardExpand({item}) {
             <div className="-mt-[2rem] items-center flex h-[2rem]">
                 <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${item.id}.gif`} alt="IMG" className="mx-auto scale-[3]"/>
             </div>
-            <div className="flex flex-wrap w-full h-[65%]">
-                <h1 className="w-full text-center font-medium text-xl text-gray-500">#{item.id.toString().padStart(3, "0")}</h1>
-                <label className="w-full text-center pt-5 pb-3 text-ms capitalize text-2xl">{item.name}</label>
+            <div className="w-full h-[65%]">
+                <h1 className="text-center font-medium text-xl text-gray-500">#{item.id.toString().padStart(3, "0")}</h1>
+                <h1 className="text-center pt-5 pb-3 text-ms capitalize text-2xl">{item.name}</h1>
                 <div className="py-5 justify-center w-full flex">
                     {item.types.map((itemType, key) => {
                         return (
-                            <span className="m-auto leading-4 px-3 py-3 rounded-full text-gray-100 capitalize font-medium mx-1 text-xl" style={{background: type[itemType.type.name]}} key={key}>{itemType.type.name}</span>
-                            );
-                        })}
+                            <span className="m-auto leading-4 px-6 py-3 rounded-full text-gray-100 capitalize font-medium mx-2 text-xl" style={{background: type[itemType.type.name]}} key={key}>{itemType.type.name}</span>
+                        );
+                    })}
                 </div>
-                <label className="w-1/2 text-center pt-5 pb-3 text-ms">{item.weight} Kg</label>
-                <label className="w-1/2 text-center pt-5 pb-3 text-ms">{item.height} m</label>
-                <label className="w-1/2 text-center pt-5 pb-3 text-ms">{item.base_experience} m</label>
+                <label className="m-auto text-center pt-5 pb-3 text-ms">{item.weight} Kg</label>
+                <label className="m-auto text-center pt-5 pb-3 text-ms">{item.height} m</label>
+                <label className="m-auto text-center pt-5 pb-3 text-ms">{item.base_experience}</label>
             </div>
         </div>
     );
