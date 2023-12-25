@@ -45,7 +45,7 @@ export default function App() {
     // RENDER==============================================================================================================
     return (
         <>            
-            <div className="container-fluid flex flex-wrap">
+            <div className="container-fluid flex flex-wrap bg-white">
                 <div className="flex flex-wrap justify-center md:w-[60%] pt-20">
                     {list.map((item, key) => {
                         return(<Card item={item} onClick={() => {
@@ -53,7 +53,7 @@ export default function App() {
                         }} key={key}></Card>);
                     })}
                 </div>
-                <div className="md:w-[40%] h-screen sticky top-0 p-10 pt-36">
+                <div className="md:w-[40%] h-screen sticky top-0 p-10 pt-40">
                     {select.id && <CardExpand item={select}></CardExpand>}                    
                 </div>
             </div>
