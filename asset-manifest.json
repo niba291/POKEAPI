@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/pokeapi/static/css/main.f1bf922e.css",
+    "main.js": "/pokeapi/static/js/main.b9e809fe.js",
+    "static/js/787.b22f280c.chunk.js": "/pokeapi/static/js/787.b22f280c.chunk.js",
+    "static/media/AtlantisInternational-jen0.ttf": "/pokeapi/static/media/AtlantisInternational-jen0.355e846164a6bf1a6692.ttf",
+    "index.html": "/pokeapi/index.html",
+    "main.f1bf922e.css.map": "/pokeapi/static/css/main.f1bf922e.css.map",
+    "main.b9e809fe.js.map": "/pokeapi/static/js/main.b9e809fe.js.map",
+    "787.b22f280c.chunk.js.map": "/pokeapi/static/js/787.b22f280c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f1bf922e.css",
+    "static/js/main.b9e809fe.js"
+  ]
+}
