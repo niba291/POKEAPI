@@ -11,6 +11,4 @@ Simple website styled using TailwindCSS and React. Uses an external API called P
 
 Live : https://niba291.github.io/POKEAPI/
 
-![img](https://github.com/niba291/POKEAPI/blob/master/pokeapi.png)
-
-
+![pokeapi](https://github.com/niba291/POKEAPI/assets/63934510/2a789344-66a1-45af-bfa6-85e3e48eb764)
