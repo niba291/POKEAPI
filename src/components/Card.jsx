@@ -4,26 +4,26 @@ import axios                                                                    
 // ASSETS==================================================================================================================
 // COMPONENTS==============================================================================================================
 // GLOBAL==================================================================================================================    
-const type            = {
-    "normal"          : "#A8A878",
-    "fire"            : "#F08030",
-    "fighting"        : "#C03028",
-    "water"           : "#6890F0",
-    "flying"          : "#A890F0",
-    "grass"           : "#78C850",
-    "poison"          : "#A040A0",
-    "electric"        : "#F8D030",
-    "ground"          : "#E0C068",
-    "psychic"         : "#F85888",
-    "rock"            : "#B8A038",
-    "ice"             : "#98D8D8",
-    "bug"             : "#A8B820",
-    "dragon"          : "#7038F8",
-    "ghost"           : "#705898",
-    "dark"            : "#705848",
-    "steel"           : "#B8B8D0",
-    "fairy"           : "#EE99AC",
-    "stellar"         : "#7CC7B2"
+const type              = {
+    "normal"            : "#A8A878",
+    "fire"              : "#F08030",
+    "fighting"          : "#C03028",
+    "water"             : "#6890F0",
+    "flying"            : "#A890F0",
+    "grass"             : "#78C850",
+    "poison"            : "#A040A0",
+    "electric"          : "#F8D030",
+    "ground"            : "#E0C068",
+    "psychic"           : "#F85888",
+    "rock"              : "#B8A038",
+    "ice"               : "#98D8D8",
+    "bug"               : "#A8B820",
+    "dragon"            : "#7038F8",
+    "ghost"             : "#705898",
+    "dark"              : "#705848",
+    "steel"             : "#B8B8D0",
+    "fairy"             : "#EE99AC",
+    "stellar"           : "#7CC7B2"
 };
 // RENDER==================================================================================================================
 export function Card({item, onClick, setLoading}) {
@@ -37,7 +37,7 @@ export function Card({item, onClick, setLoading}) {
     return (
         <div className="flex flex-wrap justify-center rounded-md w-[12rem] h-[12rem] font-bold shadow-md border text-xl md:m-14 mx-2 my-14 hover:scale-110 transition duration-300 cursor-pointer object-cover" onClick={onClick}>
             <div className="h-[8rem] -mt-[7rem] items-end flex cursor-pointer">
-                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${item.id}.gif`} alt="IMG" className="mx-auto"/>
+                <img src={require(`../assets/img/${item.id}.gif`)} alt="IMG" className="mx-auto"/>
             </div>
             <small className="w-full text-center pt-5 font-bold text-gray-400 cursor-pointer">#{item.id.toString().padStart(3, "0")}</small>
             <label className="w-full text-center pt-5 pb-1 text-ms text-gray-600 cursor-pointer capitalize text-2xl">{item.name}</label>
@@ -99,7 +99,7 @@ export function CardExpand({item}) {
                 :
                     <div className="flex flex-wrap justify-center items-start rounded-md w-full font-bold shadow-md border h-[78vh]">
                         <div className="-mt-[2rem] items-center flex h-[2rem]">
-                            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${item.id}.gif`} alt="IMG" className="mx-auto scale-[3]"/>
+                            <img src={require(`../assets/img/${item.id}.gif`)} alt="IMG" className="mx-auto scale-[3]"/>
                         </div>
                         <div className="w-full h-[65%]">
                             <h1 className="text-center font-bold text-gray-400 text-2xl">#{item.id.toString().padStart(3, "0")}</h1>
