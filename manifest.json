@@ -1,7 +1,13 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "PokeApi",
+  "name": "PokeApi",
   "icons": [
+    {
+      "src": "icon.svg",
+      "purpose": "any",
+      "sizes": "48x48 72x72 96x96 128x128 256x256 512x512",
+      "type": "image/svg+xml"
+    }
   ],
   "start_url": ".",
   "display": "standalone",
