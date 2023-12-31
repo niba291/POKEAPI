@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/POKEAPI/static/css/main.ecce0b50.css",
-    "main.js": "/POKEAPI/static/js/main.935b3a09.js",
+    "main.js": "/POKEAPI/static/js/main.60b3b127.js",
     "static/js/787.b22f280c.chunk.js": "/POKEAPI/static/js/787.b22f280c.chunk.js",
     "static/media/3.gif": "/POKEAPI/static/media/3.49289a65abbdb0e6b6e1.gif",
     "static/media/115.gif": "/POKEAPI/static/media/115.3e8a7d2b9f61487a406d.gif",
@@ -148,11 +148,11 @@
     "static/media/101.gif": "/POKEAPI/static/media/101.db0e5522c8728d9344df.gif",
     "index.html": "/POKEAPI/index.html",
     "main.ecce0b50.css.map": "/POKEAPI/static/css/main.ecce0b50.css.map",
-    "main.935b3a09.js.map": "/POKEAPI/static/js/main.935b3a09.js.map",
+    "main.60b3b127.js.map": "/POKEAPI/static/js/main.60b3b127.js.map",
     "787.b22f280c.chunk.js.map": "/POKEAPI/static/js/787.b22f280c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ecce0b50.css",
-    "static/js/main.935b3a09.js"
+    "static/js/main.60b3b127.js"
   ]
 }
