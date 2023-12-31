@@ -26,14 +26,8 @@ const type              = {
     "stellar"           : "#7CC7B2"
 };
 // RENDER==================================================================================================================
-export function Card({item, onClick, setLoading}) {
+export function Card({item, onClick}) {
     // VARIABLES===========================================================================================================    
-    // USEEFFECT===========================================================================================================
-    useEffect(() => {
-        if(item.id === 151){
-            setLoading(false);
-        }
-    }, []);
     return (
         <div className="flex flex-wrap justify-center rounded-md w-[12rem] h-[12rem] font-bold shadow-md border text-xl md:m-14 mx-2 my-14 hover:scale-110 transition duration-300 cursor-pointer object-cover" onClick={onClick}>
             <div className="h-[8rem] -mt-[7rem] items-end flex cursor-pointer">

@@ -9,13 +9,17 @@ import { Card, CardExpand }                                                     
 // RENDER==================================================================================================================
 export default function App() {
     // VARIABLES===========================================================================================================       
-    const [list, setList]                   = useState([]);
-    const [listAll, setListAll]             = useState([]);
-    const [select, setSelect]               = useState({});    
-    const [loading, setLoading]             = useState(false);
-    const requestGetPokemon                 = async () => {
+    const [listAll, setListAll]                 = useState([]);
+    const [list, setList]                       = useState([]);
+    const [listElementAll, setListElementAll]   = useState([]);
+    const [select, setSelect]                   = useState({});    
+    const [loading, setLoading]                 = useState(false);
+    const requestGetPokemon                     = async () => {
         try{
             let data                        = [];
+            let element                     = [];
+
+            setLoading(true);
 
             for(let i = 1; i < 152; i++){
                 let request                 = await axios({
@@ -29,10 +33,19 @@ export default function App() {
                 }
 
                 data                        = [...data, request.data];
+                element                     = [...element, 
+                    <Card 
+                        item                = {request.data} 
+                        onClick             = {() => {setSelect(request.data)}} 
+                        key                 = {i} 
+                    ></Card>
+                ];
             }
 
-            setList(data);
+            setList(element);
             setListAll(data);
+            setListElementAll(element);
+            setLoading(false);
 
         }catch(exception){
             console.log(exception);
@@ -41,7 +54,6 @@ export default function App() {
     };
     // USEEFFECT===========================================================================================================
     useEffect(() => {
-        setLoading(true);   
         requestGetPokemon();
     }, []);
     // RENDER==============================================================================================================
@@ -60,11 +72,18 @@ export default function App() {
                         placeholder="serach by name (bulbasaur) or number (#001)"
                         onInput={(event) => {
                             if(event.target.value.trim() !== ""){
-                                setList(listAll.filter((item) => {
-                                    return item.name.includes(event.target.value.trim().toLowerCase());
+                                setList(listAll.map((item) => {
+                                    if(item.name.includes(event.target.value.trim().toLowerCase())){
+                                        return(
+                                            <Card 
+                                                item        = {item} 
+                                                onClick     = {() => {setSelect(item)}} 
+                                            ></Card>
+                                        );
+                                    }
                                 }));
                             }else{
-                                setList(listAll);
+                                setList(listElementAll);
                             }
                         }}
                     />
@@ -73,16 +92,7 @@ export default function App() {
                     POKEAPI
                 </div>
                 <div className="flex flex-wrap justify-center md:w-[60%] pt-20">
-                    {list.map((item, key) => {
-                        return(
-                            <Card 
-                                item        = {item} 
-                                onClick     = {() => {setSelect(item)}} 
-                                key         = {key} 
-                                setLoading  = {setLoading}                               
-                            ></Card>
-                        );
-                    })}
+                    {list}
                 </div>
                 <div className="md:w-[40%] h-screen sticky top-0 p-10 pt-40">
                     {select.id ? 
