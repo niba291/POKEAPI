@@ -4,7 +4,7 @@ import axios                                                                    
 // ASSETS==================================================================================================================
 // COMPONENTS==============================================================================================================
 // GLOBAL==================================================================================================================    
-const type              = {
+const typeColors        = {
     "normal"            : "#A8A878",
     "fire"              : "#F08030",
     "fighting"          : "#C03028",
@@ -25,6 +25,7 @@ const type              = {
     "fairy"             : "#EE99AC",
     "stellar"           : "#7CC7B2"
 };
+
 // RENDER==================================================================================================================
 export function Card({item, onClick}) {
     // VARIABLES===========================================================================================================    
@@ -34,11 +35,11 @@ export function Card({item, onClick}) {
                 <img src={require(`../assets/img/${item.id}.gif`)} alt="IMG" className="mx-auto"/>
             </div>
             <small className="w-full text-center pt-5 font-bold text-gray-400 cursor-pointer">#{item.id.toString().padStart(3, "0")}</small>
-            <label className="w-full text-center pt-5 pb-1 text-ms text-gray-600 cursor-pointer capitalize text-2xl">{item.name}</label>
+            <label className="w-full text-center pt-5 pb-1 text-ms text-gray-600 cursor-pointer capitalize text-2xl">{item.name.english}</label>
             <div className="py-5 flex justify-center w-full cursor-pointer">
-                {item.types.map((itemType, key) => {
+                {item.type.map((itemType, key) => {
                     return (
-                        <span className="leading-4 px-3 py-1 rounded-full text-gray-100 capitalize font-medium mx-1 text-md" style={{background: type[itemType.type.name]}} key={key}>{itemType.type.name}</span>
+                        <span className="leading-4 px-3 py-1 rounded-full text-gray-100 capitalize font-medium mx-1 text-md" style={{background: typeColors[itemType.toLowerCase()]}} key={key}>{itemType}</span>
                     );
                 })}
             </div>
@@ -101,7 +102,7 @@ export function CardExpand({item}) {
                             <div className="py-5 justify-center w-full flex">
                                 {item.types.map((itemType, key) => {
                                     return (
-                                        <span className="m-auto leading-4 px-6 py-2 rounded-full text-gray-100 capitalize font-medium mx-2 text-2xl" style={{background: type[itemType.type.name]}} key={key}>{itemType.type.name}</span>
+                                        <span className="m-auto leading-4 px-6 py-2 rounded-full text-gray-100 capitalize font-medium mx-2 text-2xl" style={{background: typeColors[itemType.type.name]}} key={key}>{itemType.type.name}</span>
                                     );
                                 })}
                             </div>

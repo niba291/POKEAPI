@@ -9,43 +9,42 @@ import { Card, CardExpand }                                                     
 // RENDER==================================================================================================================
 export default function App() {
     // VARIABLES===========================================================================================================       
-    const [listAll, setListAll]                 = useState([]);
-    const [list, setList]                       = useState([]);
-    const [listElementAll, setListElementAll]   = useState([]);
-    const [select, setSelect]                   = useState({});    
-    const [loading, setLoading]                 = useState(false);
-    const requestGetPokemon                     = async () => {
+    const [list, setList]                   = useState([]);
+    const [listAll, setListAll]             = useState([]);
+    const [select, setSelect]               = useState({});    
+    const [loading, setLoading]             = useState(false);
+    const requestGetPokemon                 = async () => {
         try{
-            let data                        = [];
-            let element                     = [];
 
-            setLoading(true);
-
-            for(let i = 1; i < 152; i++){
-                let request                 = await axios({
-                    method                  : "get",
-                    url                     : `https://pokeapi.co/api/v2/pokemon/${i}`
-                });
-
-                if(request.status !== 200){
-                    console.log(request);
-                    continue;
-                }
-
-                data                        = [...data, request.data];
-                element                     = [...element, 
-                    <Card 
-                        item                = {request.data} 
-                        onClick             = {() => {setSelect(request.data)}} 
-                        key                 = {i} 
-                    ></Card>
-                ];
+            let request                 = await axios({
+                method                  : "get",
+                url                     : "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json"
+            });
+            
+            if(request.status !== 200){
+                console.log(request);
+                return;
             }
 
-            setList(element);
-            setListAll(data);
-            setListElementAll(element);
-            setLoading(false);
+            setList(request.data.slice(0, 151));
+            setListAll(request.data.slice(0, 151));
+
+            // let data                        = [];
+            // for(let i = 1; i < 152; i++){
+            //     let request                 = await axios({
+            //         method                  : "get",
+            //         url                     : `https://pokeapi.co/api/v2/pokemon/${i}`
+            //     });
+
+            //     if(request.status !== 200){
+            //         console.log(request);
+            //         continue;
+            //     }
+
+            //     data                        = [...data, request.data];
+            // }
+            // setList(data);
+            // setListAll(data);
 
         }catch(exception){
             console.log(exception);
@@ -54,7 +53,9 @@ export default function App() {
     };
     // USEEFFECT===========================================================================================================
     useEffect(() => {
+        // setLoading(true);
         requestGetPokemon();
+        // setLoading(false);
     }, []);
     // RENDER==============================================================================================================
     return (
@@ -72,18 +73,14 @@ export default function App() {
                         placeholder="serach by name (bulbasaur) or number (#001)"
                         onInput={(event) => {
                             if(event.target.value.trim() !== ""){
-                                setList(listAll.map((item) => {
-                                    if(item.name.includes(event.target.value.trim().toLowerCase())){
-                                        return(
-                                            <Card 
-                                                item        = {item} 
-                                                onClick     = {() => {setSelect(item)}} 
-                                            ></Card>
-                                        );
+                                setList(listAll.filter((item) => {
+                                    if(event.target.value.trim().toLowerCase().charAt(0) === "#"){
+                                        return item.id.toString().includes(parseInt(event.target.value.trim().toLowerCase().replace("#", "")));
                                     }
+                                    return item.name.english.toLowerCase().includes(event.target.value.trim().toLowerCase());
                                 }));
                             }else{
-                                setList(listElementAll);
+                                setList(listAll);
                             }
                         }}
                     />
@@ -92,7 +89,29 @@ export default function App() {
                     POKEAPI
                 </div>
                 <div className="flex flex-wrap justify-center md:w-[60%] pt-20">
-                    {list}
+                    {list.map((item, key) => {
+                        return(
+                            <Card 
+                                item        = {item} 
+                                onClick     = {async () => {
+                                    let request                 = await axios({
+                                        method                  : "get",
+                                        url                     : `https://pokeapi.co/api/v2/pokemon/${item.id}`
+                                    });
+
+                                    if(request.status !== 200){
+                                        console.log(request);
+                                        return;
+                                    }
+
+                                    setSelect(request.data);
+
+                                }} 
+                                key         = {key} 
+                                setLoading  = {setLoading}                               
+                            ></Card>
+                        );
+                    })}
                 </div>
                 <div className="md:w-[40%] h-screen sticky top-0 p-10 pt-40">
                     {select.id ? 
