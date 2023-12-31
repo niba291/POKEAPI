@@ -16,6 +16,8 @@ export default function App() {
     const requestGetPokemon                 = async () => {
         try{
 
+            setLoading(true);
+
             let request                 = await axios({
                 method                  : "get",
                 url                     : "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json"
@@ -29,22 +31,7 @@ export default function App() {
             setList(request.data.slice(0, 151));
             setListAll(request.data.slice(0, 151));
 
-            // let data                        = [];
-            // for(let i = 1; i < 152; i++){
-            //     let request                 = await axios({
-            //         method                  : "get",
-            //         url                     : `https://pokeapi.co/api/v2/pokemon/${i}`
-            //     });
-
-            //     if(request.status !== 200){
-            //         console.log(request);
-            //         continue;
-            //     }
-
-            //     data                        = [...data, request.data];
-            // }
-            // setList(data);
-            // setListAll(data);
+            setLoading(false);
 
         }catch(exception){
             console.log(exception);
@@ -53,9 +40,7 @@ export default function App() {
     };
     // USEEFFECT===========================================================================================================
     useEffect(() => {
-        // setLoading(true);
         requestGetPokemon();
-        // setLoading(false);
     }, []);
     // RENDER==============================================================================================================
     return (
